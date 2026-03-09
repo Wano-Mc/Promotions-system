@@ -1,6 +1,5 @@
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 
-const BOT_TOKEN = 'MTQ4MDM4MTk1MTM1MjUwNDM3MQ.GGTz91.WAoz3UucP5XhRc2aK6YzGGtO8O1uhrmiYKuvy8';
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -16,4 +15,4 @@ client.on('ready', () => {
   });
 });
 
-client.login(BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
