@@ -798,10 +798,10 @@
   <div id="forumWhitelist">
     <div class="card">
       <div class="card-header">
-        <div class="card-title">📋 White List Forms</div>
+        <div class="card-title" id="forumWhitelistTitle">📋 White List Forms</div>
         <div style="display:flex;gap:8px;align-items:center">
-          <button class="btn btn-outline btn-sm" onclick="openTagManager()">🏷️ إدارة التاقات</button>
-          <button class="btn btn-gold btn-sm" onclick="openWLModal()">+ New White List</button>
+          <button class="btn btn-outline btn-sm" id="btnManageTagsWL" onclick="openTagManager()">🏷️ إدارة التاقات</button>
+          <button class="btn btn-gold btn-sm" id="btnAddWL" onclick="openWLModal()">+ New White List</button>
         </div>
       </div>
       <!-- Filters -->
@@ -834,10 +834,10 @@
   <div id="forumTeams" style="display:none">
     <div class="card">
       <div class="card-header">
-        <div class="card-title">👥 Teams Forms</div>
+        <div class="card-title" id="forumTeamsTitle">👥 Teams Forms</div>
         <div style="display:flex;gap:8px;align-items:center">
-          <button class="btn btn-outline btn-sm" onclick="openTagManager()">🏷️ إدارة التاقات</button>
-          <button class="btn btn-gold btn-sm" onclick="openTeamModal()">+ New Team Forum</button>
+          <button class="btn btn-outline btn-sm" id="btnManageTagsTeams" onclick="openTagManager()">🏷️ إدارة التاقات</button>
+          <button class="btn btn-gold btn-sm" id="btnAddTeam" onclick="openTeamModal()">+ New Team Forum</button>
         </div>
       </div>
       <!-- Filters -->
@@ -917,7 +917,7 @@
     </div>
     <div id="settingsSecurity" class="settings-panel" style="display:none">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="card" style="padding:14px 16px"><div style="font-size:11px;font-weight:700;color:var(--gold);margin-bottom:10px">🔐 كلمات المرور</div><div style="font-size:8px;color:var(--text-muted);margin-bottom:8px">فارغ = بدون تغيير</div><div class="form-group" style="margin:0 0 6px"><label class="form-label">🟡 Staff Manager</label><input type="password" class="form-input" id="set-pass-rm" placeholder="••••" style="font-size:11px"></div><div class="form-group" style="margin:0 0 6px"><label class="form-label">🟢 Moderator</label><input type="password" class="form-input" id="set-pass-em" placeholder="••••" style="font-size:11px"></div><div class="form-group" style="margin:0"><label class="form-label">🔵 Staff</label><input type="password" class="form-input" id="set-pass-staff" placeholder="••••" style="font-size:11px"></div></div>
+        <div class="card" style="padding:14px 16px"><div style="font-size:11px;font-weight:700;color:var(--gold);margin-bottom:10px">🔐 كلمات المرور</div><div style="font-size:8px;color:var(--text-muted);margin-bottom:8px">فارغ = بدون تغيير</div><div class="form-group" style="margin:0 0 6px"><label class="form-label">🟡 Staff Manager</label><input type="password" class="form-input" id="set-pass-rm" placeholder="••••" style="font-size:11px"></div><div class="form-group" style="margin:0 0 6px"><label class="form-label">🟢 Moderator</label><input type="password" class="form-input" id="set-pass-em" placeholder="••••" style="font-size:11px"></div><div class="form-group" style="margin:0 0 10px"><label class="form-label">🔵 Staff</label><input type="password" class="form-input" id="set-pass-staff" placeholder="••••" style="font-size:11px"></div><div style="font-size:11px;font-weight:700;color:var(--gold);margin:10px 0 8px">🆔 Discord Role IDs</div><div style="font-size:9px;color:var(--text-muted);margin-bottom:8px">اكتب أكثر من ID مفصول بفاصلة (,)</div><div class="form-group" style="margin:0 0 6px"><label class="form-label">🟡 Admin Role IDs</label><input type="text" class="form-input" id="set-discord-admin-ids" placeholder="123...,456..." style="font-size:11px"></div><div class="form-group" style="margin:0 0 6px"><label class="form-label">🟢 Extra/Moderator Role IDs</label><input type="text" class="form-input" id="set-discord-extra-ids" placeholder="123...,456..." style="font-size:11px"></div><div class="form-group" style="margin:0"><label class="form-label">🔵 Staff Role IDs (اختياري)</label><input type="text" class="form-input" id="set-discord-staff-ids" placeholder="123...,456..." style="font-size:11px"></div></div>
         <div class="card" style="padding:14px 16px"><div style="font-size:11px;font-weight:700;color:var(--gold);margin-bottom:10px">⚠️ إجراءات</div><button class="btn btn-outline btn-sm" onclick="if(confirm('تسجيل خروج؟')) logout()" style="width:100%;margin-bottom:6px;font-size:10px">🚪 تسجيل خروج</button><button class="btn btn-outline btn-sm" onclick="if(confirm('إعادة كل الإعدادات؟')) resetAllSettings()" style="width:100%;font-size:10px;color:var(--red);border-color:var(--red)">🗑️ إعادة تعيين</button></div>
       </div>
     </div>
@@ -1889,6 +1889,7 @@ let appSettings = {
   filters: { admins:'كل الأدمنز', tags:'كل التاقات', versions:'كل الإصدارات', types:'كل الأنواع', search:'🔍 بحث...' },
   cardTitles: { allemp:'👥 جميع الموظفين', teamperf:'👥 أداء الفريق', ranks:'🏅 نظام الرتب', history:'📋 سجل النقاط' },
   forumCols: { admin:'Admin', discord:'Discord User & ID', mc:'MC Username', version:'Version', type:'Type', tag:'Tag', teamname:'Team Name', color:'Color', leader:'Leader', action:'إجراء' },
+  discordRoles: { admin: [], extra: [], staff: [] },
   icons: {}
 };
 
@@ -1915,6 +1916,12 @@ async function loadSettings(){
       if(loaded.passStaff) appSettings.passStaff = loaded.passStaff;
       if(loaded.passRM) appSettings.passRM = loaded.passRM;
       if(loaded.passEM) appSettings.passEM = loaded.passEM;
+      if(loaded.discordRoles){
+        appSettings.discordRoles = appSettings.discordRoles || {admin:[],extra:[],staff:[]};
+        if(Array.isArray(loaded.discordRoles.admin)) appSettings.discordRoles.admin = loaded.discordRoles.admin;
+        if(Array.isArray(loaded.discordRoles.extra)) appSettings.discordRoles.extra = loaded.discordRoles.extra;
+        if(Array.isArray(loaded.discordRoles.staff)) appSettings.discordRoles.staff = loaded.discordRoles.staff;
+      }
     }
   } catch(e){}
   applySettings();
@@ -2083,6 +2090,9 @@ function applySettings(){
   if(s.passStaff) STAFF_PASS = s.passStaff;
   if(s.passRM) RM_PASS = s.passRM;
   if(s.passEM) EM_PASS = s.passEM;
+  DISCORD_ROLE_IDS.admin = normalizeRoleIds((s.discordRoles||{}).admin);
+  DISCORD_ROLE_IDS.extra = normalizeRoleIds((s.discordRoles||{}).extra);
+  DISCORD_ROLE_IDS.staff = normalizeRoleIds((s.discordRoles||{}).staff);
   // System name
   const logoText = document.querySelector('.logo-text');
   if(logoText) logoText.textContent = s.sysname || 'نظام الترقيات';
@@ -2130,9 +2140,14 @@ function applySettings(){
   document.querySelectorAll('[onclick*="openCriteriaModal"]').forEach(function(b){ if(b.tagName==='BUTTON') b.textContent = s.btns.addcriteria||'+ معيار جديد'; });
   document.querySelectorAll('[onclick*="openRankModal"]').forEach(function(b){ if(b.tagName==='BUTTON') b.textContent = s.btns.addrank||'+ رتبة جديدة'; });
   // Forums buttons
-  document.querySelectorAll('[onclick*="openWLModal()"]').forEach(function(b){ if(b.tagName==='BUTTON') b.textContent = s.btns.addwl||'+ New White List'; });
-  document.querySelectorAll('[onclick*="openTeamModal()"]').forEach(function(b){ if(b.tagName==='BUTTON') b.textContent = s.btns.addteam||'+ New Team Forum'; });
-  document.querySelectorAll('[onclick*="openTagManager"]').forEach(function(b){ if(b.tagName==='BUTTON') b.textContent = s.btns.managetags||'🏷️ إدارة التاقات'; });
+  var bAddWL = document.getElementById('btnAddWL');
+  if(bAddWL) bAddWL.textContent = s.btns.addwl||'+ New White List';
+  var bAddTeam = document.getElementById('btnAddTeam');
+  if(bAddTeam) bAddTeam.textContent = s.btns.addteam||'+ New Team Forum';
+  var bTagWL = document.getElementById('btnManageTagsWL');
+  if(bTagWL) bTagWL.textContent = s.btns.managetags||'🏷️ إدارة التاقات';
+  var bTagTeams = document.getElementById('btnManageTagsTeams');
+  if(bTagTeams) bTagTeams.textContent = s.btns.managetags||'🏷️ إدارة التاقات';
   // Forums sub-tabs
   var fs = s.forumSubs || {};
   var wlSubBtn = document.getElementById('forumSubWhitelist');
@@ -2140,8 +2155,10 @@ function applySettings(){
   var tmSubBtn = document.getElementById('forumSubTeams');
   if(tmSubBtn) tmSubBtn.textContent = fs.teams || '👥 Teams';
   // Forums card titles
-  document.querySelectorAll('#forumWhitelist .card-title').forEach(function(el){ el.textContent = fs.wlTitle || '📋 White List Forms'; });
-  document.querySelectorAll('#forumTeams .card-title').forEach(function(el){ el.textContent = fs.teamsTitle || '👥 Teams Forms'; });
+  var wlTitle = document.getElementById('forumWhitelistTitle');
+  if(wlTitle) wlTitle.textContent = fs.wlTitle || '📋 White List Forms';
+  var teamsTitle = document.getElementById('forumTeamsTitle');
+  if(teamsTitle) teamsTitle.textContent = fs.teamsTitle || '👥 Teams Forms';
   // Card titles
   var ct = s.cardTitles || {};
   var el;
@@ -2258,6 +2275,11 @@ function fillSettingsForm(){
   if(fnt.body){var el=document.getElementById('set-font-body');if(el)el.value=fnt.body;}
   if(fnt.small){var el=document.getElementById('set-font-small');if(el)el.value=fnt.small;}
   if(fnt.radius){var el=document.getElementById('set-border-radius');if(el)el.value=fnt.radius;}
+  // Discord role IDs
+  var dr=s.discordRoles||{admin:[],extra:[],staff:[]};
+  set('set-discord-admin-ids', (dr.admin||[]).join(','));
+  set('set-discord-extra-ids', (dr.extra||[]).join(','));
+  set('set-discord-staff-ids', (dr.staff||[]).join(','));
 }
 
 async function saveSettings(){
@@ -2266,6 +2288,14 @@ async function saveSettings(){
   const newStaffPass = get('set-pass-staff');
   const newRMPass = get('set-pass-rm');
   const newEMPass = get('set-pass-em');
+  const parseIds = function(v){
+    return (v||'').split(',').map(function(x){return x.trim();}).filter(Boolean);
+  };
+  const discordRoleIds = {
+    admin: parseIds(get('set-discord-admin-ids')),
+    extra: parseIds(get('set-discord-extra-ids')),
+    staff: parseIds(get('set-discord-staff-ids'))
+  };
   document.getElementById('set-pass-staff').value='';
   document.getElementById('set-pass-rm').value='';
   document.getElementById('set-pass-em').value='';
@@ -2346,6 +2376,7 @@ async function saveSettings(){
     passStaff: newStaffPass || appSettings.passStaff || '',
     passRM: newRMPass || appSettings.passRM || '',
     passEM: newEMPass || appSettings.passEM || '',
+    discordRoles: discordRoleIds,
   };
   // Save to Supabase
   const existing = await sbFetch('settings?key=eq.app_settings');
@@ -2534,6 +2565,40 @@ let RM_PASS = 'Make_by_omar';
 let STAFF_PASS = 'Staff_team_65';
 let EM_PASS = 'Extra_Manger_65';
 let selectedRole = null;
+let DISCORD_ROLE_IDS = { admin: [], extra: [], staff: [] };
+
+function normalizeRoleIds(list){
+  return (Array.isArray(list)?list:[]).map(function(v){ return String(v).trim(); }).filter(Boolean);
+}
+function detectAccessRoleFromGuildRoles(guildRoles){
+  const ids = (guildRoles||[]).map(function(r){ return String(r.id||'').trim(); });
+  const cfg = DISCORD_ROLE_IDS || {admin:[],extra:[],staff:[]};
+  const hasAny = function(target){
+    var norm = normalizeRoleIds(target);
+    for(var i=0;i<norm.length;i++) if(ids.indexOf(norm[i])!==-1) return true;
+    return false;
+  };
+  if(hasAny(cfg.admin)) return 'admin';
+  if(hasAny(cfg.extra)) return 'extra';
+  if(hasAny(cfg.staff)) return 'staff';
+  // Safe fallback by name for backward compatibility only
+  const names = (guildRoles||[]).map(function(r){ return String(r.name||'').toLowerCase(); });
+  if(names.some(function(n){return n.includes('manager')||n.includes('admin')||n.includes('owner');})) return 'admin';
+  if(names.some(function(n){return n.includes('moderator')||n.includes('mod')||n.includes('extra');})) return 'extra';
+  return 'staff';
+}
+function applyUserRoleAccess(role){
+  document.body.classList.remove('is-admin','is-extra','is-staff');
+  if(role==='admin'){
+    document.body.classList.add('is-admin');
+    document.getElementById('criteriaLock').style.display='none';
+    document.getElementById('ranksLock').style.display='none';
+  } else if(role==='extra'){
+    document.body.classList.add('is-extra');
+  } else {
+    document.body.classList.add('is-staff');
+  }
+}
 
 // Pre-load passwords from DB before login screen
 (async function preloadPasswords(){
@@ -2544,6 +2609,11 @@ let selectedRole = null;
       if(loaded.passStaff) STAFF_PASS = loaded.passStaff;
       if(loaded.passRM) RM_PASS = loaded.passRM;
       if(loaded.passEM) EM_PASS = loaded.passEM;
+      if(loaded.discordRoles){
+        DISCORD_ROLE_IDS.admin = normalizeRoleIds(loaded.discordRoles.admin);
+        DISCORD_ROLE_IDS.extra = normalizeRoleIds(loaded.discordRoles.extra);
+        DISCORD_ROLE_IDS.staff = normalizeRoleIds(loaded.discordRoles.staff);
+      }
     }
   } catch(e){ console.error('Preload passwords error',e); }
 })();
@@ -2572,7 +2642,11 @@ function selectRole(role){
 }
 
 function doLogin(){
-  if(!selectedRole){ return; }
+  if(!selectedRole){
+    document.getElementById('loginErr').textContent='⚠️ اختر الرتبة أولاً';
+    document.getElementById('loginErr').style.display='block';
+    return;
+  }
   if(selectedRole==='staff_manager'){
     const pass = document.getElementById('loginPass').value;
     if(pass !== RM_PASS){
@@ -2580,9 +2654,7 @@ function doLogin(){
       return;
     }
     currentUser = { name: 'Staff Manager', role: 'admin' };
-    document.body.classList.add('is-admin');
-    document.getElementById('criteriaLock').style.display='none';
-    document.getElementById('ranksLock').style.display='none';
+    applyUserRoleAccess('admin');
   } else if(selectedRole==='moderator'){
     const pass = document.getElementById('loginPass').value;
     if(pass !== EM_PASS){
@@ -2590,7 +2662,7 @@ function doLogin(){
       return;
     }
     currentUser = { name: 'Moderator', role: 'extra' };
-    document.body.classList.add('is-extra');
+    applyUserRoleAccess('extra');
   } else {
     const pass = document.getElementById('loginPass').value;
     if(pass !== STAFF_PASS){
@@ -2598,7 +2670,7 @@ function doLogin(){
       return;
     }
     currentUser = { name: 'Staff', role: 'staff' };
-    document.body.classList.add('is-staff');
+    applyUserRoleAccess('staff');
   }
   // Save session
   try{ localStorage.setItem('session', JSON.stringify({name:currentUser.name, role:currentUser.role})); }catch(e){}
@@ -2630,15 +2702,7 @@ function logout(){
       currentUser = { name: s.name, role: s.role };
       if(s.discord) currentUser.discord = s.discord;
       if(s.guildRoles) currentUser.guildRoles = s.guildRoles;
-      if(s.role==='admin'){
-        document.body.classList.add('is-admin');
-        document.getElementById('criteriaLock').style.display='none';
-        document.getElementById('ranksLock').style.display='none';
-      } else if(s.role==='extra'){
-        document.body.classList.add('is-extra');
-      } else {
-        document.body.classList.add('is-staff');
-      }
+      applyUserRoleAccess(s.role==='admin'?'admin':(s.role==='extra'?'extra':'staff'));
       enterApp();
     }
   }catch(e){}
@@ -2806,35 +2870,13 @@ async function handleDiscordCallback(){
       return true;
     }
     
-    // Determine role based on selected role button (must select role first)
-    if(!selectedRole){
-      // Auto-detect role from guild roles
-      var guildRoles = (data.guild && data.guild.roles) || [];
-      var roleNames = guildRoles.map(function(r){return r.name.toLowerCase();});
-      
-      if(roleNames.some(function(n){return n.includes('manager')||n.includes('admin')||n.includes('owner');})){
-        selectedRole = 'staff_manager';
-      } else if(roleNames.some(function(n){return n.includes('moderator')||n.includes('mod')||n.includes('extra');})){
-        selectedRole = 'moderator';
-      } else {
-        selectedRole = 'staff';
-      }
-    }
-    
-    // Set user based on role
+    var guildRoles = (data.guild && data.guild.roles) || [];
+    var accessRole = detectAccessRoleFromGuildRoles(guildRoles);
+
+    // Set user based on role (from Role IDs first)
     var displayName = data.guild.nickname || data.user.globalName || data.user.username;
-    if(selectedRole==='staff_manager'){
-      currentUser = { name: displayName, role:'admin', discord:data.user, guildRoles:data.guild.roles };
-      document.body.classList.add('is-admin');
-      document.getElementById('criteriaLock').style.display='none';
-      document.getElementById('ranksLock').style.display='none';
-    } else if(selectedRole==='moderator'){
-      currentUser = { name: displayName, role:'extra', discord:data.user, guildRoles:data.guild.roles };
-      document.body.classList.add('is-extra');
-    } else {
-      currentUser = { name: displayName, role:'staff', discord:data.user, guildRoles:data.guild.roles };
-      document.body.classList.add('is-staff');
-    }
+    currentUser = { name: displayName, role: accessRole, discord:data.user, guildRoles:guildRoles };
+    applyUserRoleAccess(accessRole);
     
     // Save session with discord data
     try{ localStorage.setItem('session', JSON.stringify({
@@ -2848,7 +2890,7 @@ async function handleDiscordCallback(){
       if(!exists){
         var avatar = displayName[0];
         var topRole = (data.guild.roles && data.guild.roles[0]) || null;
-        var roleLabel = topRole ? topRole.name : (selectedRole==='staff_manager'?'Staff Manager':selectedRole==='moderator'?'Moderator':'Staff');
+        var roleLabel = topRole ? topRole.name : (accessRole==='admin'?'Staff Manager':accessRole==='extra'?'Moderator':'Staff');
         var roleColor = topRole && topRole.color ? topRole.color : '#F4B942';
         
         var newEmp = {
