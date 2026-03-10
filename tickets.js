@@ -1,6 +1,32 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-10T19:08:06.817Z",
+    "ticketOwner": "<@1350531070222794804>",
+    "ticketOwnerId": "1350531070222794804",
+    "ticketName": "dc・claimed-34",
+    "panelName": "Dc Support",
+    "transcriptFile": "transcripts/transcript-dcclaimed-34.html",
+    "users": [
+      "<@722196398635745312>",
+      "<@1450495899666087948>",
+      "<@1350531070222794804>",
+      "<@1190305586710073427>"
+    ]
+  },
+  {
+    "timestamp": "2026-03-10T19:00:17.455Z",
+    "ticketOwner": "<@1350531070222794804>",
+    "ticketOwnerId": "1350531070222794804",
+    "ticketName": "mc・waiting-54",
+    "panelName": "Mc Support",
+    "transcriptFile": "transcripts/transcript-mcwaiting-54.html",
+    "users": [
+      "<@722196398635745312>",
+      "<@1350531070222794804>"
+    ]
+  },
+  {
     "timestamp": "2026-03-10T18:24:04.728Z",
     "ticketOwner": "<@1338485684243136586>",
     "ticketOwnerId": "1338485684243136586",
