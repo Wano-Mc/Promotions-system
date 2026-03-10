@@ -1,4 +1,3 @@
-// بيانات التكتات
 window.ticketsData = [
   {
     "timestamp": "2026-03-10T17:23:40.246Z",
