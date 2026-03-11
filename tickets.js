@@ -1,6 +1,21 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-11T19:25:09.642Z",
+    "ticketOwner": "<@1420945820991356990>",
+    "ticketOwnerId": "1420945820991356990",
+    "ticketName": "team-saad-alliance",
+    "panelName": "Team Application",
+    "transcriptFile": "transcripts/transcript-team-saad-alliance.html",
+    "users": [
+      "<@1420945820991356990>",
+      "<@1450495899666087948>",
+      "<@722196398635745312>",
+      "<@1109416928042299472>",
+      "<@282859044593598464>"
+    ]
+  },
+  {
     "timestamp": "2026-03-11T18:35:00.655Z",
     "ticketOwner": "<@1420945820991356990>",
     "ticketOwnerId": "1420945820991356990",
