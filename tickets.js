@@ -1,6 +1,23 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-11T23:01:02.893Z",
+    "ticketOwner": "<@1035905580449148959>",
+    "ticketOwnerId": "1035905580449148959",
+    "ticketName": "event-winner",
+    "panelName": "Dc Support",
+    "transcriptFile": "transcripts/transcript-event-winner.html",
+    "users": [
+      "<@722196398635745312>",
+      "<@1035905580449148959>",
+      "<@1370489531828015155>",
+      "<@999714198240112650>",
+      "<@1190305586710073427>",
+      "<@282859044593598464>",
+      "<@604294965182464010>"
+    ]
+  },
+  {
     "timestamp": "2026-03-11T22:44:44.622Z",
     "ticketOwner": "<@439108590683553794>",
     "ticketOwnerId": "439108590683553794",
