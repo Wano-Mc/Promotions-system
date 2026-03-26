@@ -1,6 +1,23 @@
 // بيانات التكتات
 window.ticketsData = [
   {
+    "timestamp": "2026-03-26T12:15:47.792Z",
+    "ticketOwner": "<@1330898742110457962>",
+    "ticketOwnerId": "1330898742110457962",
+    "ticketName": "youtuber・claimed-4",
+    "panelName": "Youtuber Apply",
+    "transcriptFile": "transcripts/transcript-youtuberclaimed-4.html",
+    "claimedBy": null,
+    "users": [
+      "<@1330898742110457962>",
+      "<@1450495899666087948>",
+      "<@1350531070222794804>",
+      "<@722196398635745312>"
+    ],
+    "ticketOwnerName": "mhmdnemer",
+    "ticketOwnerDisplay": "ЯΞLEΛSE"
+  },
+  {
     "timestamp": "2026-03-24T19:40:07.172Z",
     "ticketOwner": "<@1330898742110457962>",
     "ticketOwnerId": "1330898742110457962",
